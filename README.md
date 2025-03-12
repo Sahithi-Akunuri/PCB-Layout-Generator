@@ -5,7 +5,7 @@ A deep-learning-based structured 2D layout generation model for PCB component pl
 * REST API (Flask)
 * Google Colab Notebook
 
-#Table of Contents
+# Table of Contents
 
 * [Features](#features)
 * [Installation](#installation)
@@ -15,14 +15,14 @@ A deep-learning-based structured 2D layout generation model for PCB component pl
 * [License](#license)
 
 
-#Features
+# Features
 
 ✅ Predicts optimal PCB component placements using deep learning.
 ✅ Flask API to integrate with other applications.
 ✅ Google Colab support for easy execution in the cloud.
 ✅ Visualizations using Matplotlib/OpenCV.
 
-#Installation
+# Installation
 
 1️⃣ Clone the Repository
 ```
@@ -43,7 +43,7 @@ Place the pre-trained model in the project directory as:
 pcb-layout-model.pth
 ```
 
-#Usage
+# Usage
 
 ## Option 1: Run the Flask REST API
 1️⃣ Start the Flask Server
@@ -64,13 +64,13 @@ To test the API, send a POST request to /predict with a JSON payload:
 }
 ```
 
-Use curl:
+* Use curl:
 
 ```
 curl -X POST "http://127.0.0.1:5000/predict" -H "Content-Type: application/json" -d @input.json
 ```
 
-##Option 2: Run in Google Colab
+## Option 2: Run in Google Colab
 
 1️⃣ Open Google Colab.
 * Open [Google Colab](https://colab.google/)
@@ -80,7 +80,7 @@ curl -X POST "http://127.0.0.1:5000/predict" -H "Content-Type: application/json"
 * The notebook will prompt you to upload a CSV file.
 * The model will process the data and visualize the PCB layout.
 
-#Visualization
+# Visualization
 
 1️⃣ Matplotlib
 * If using Flask, the layout will be plotted using Matplotlib.
@@ -89,7 +89,7 @@ curl -X POST "http://127.0.0.1:5000/predict" -H "Content-Type: application/json"
 * For better visualization
 
 
-#Example API Requests
+# Example API Requests
 
 1️⃣ Using Python Requests
 
@@ -107,6 +107,6 @@ response = requests.post(url, json=data)
 print(response.json())
 ```
 
-#License
+# License
 
 This project is licensed under the MIT License.

@@ -3,15 +3,13 @@
 A deep-learning-based structured 2D layout generation model for PCB component placement. The application can be used via:
 
 * REST API (Flask)
-* Google Colab Notebook
 
 # Table of Contents
 
 * [Features](#features)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Visualization](#visualization)
-* [Example_API_Requests](#example_api_requests)
+* [Troubleshooting](#troubleshooting)
 * [License](#license)
 
 
@@ -19,7 +17,6 @@ A deep-learning-based structured 2D layout generation model for PCB component pl
 
 ✅ Predicts optimal PCB component placements using deep learning.
 ✅ Flask API to integrate with other applications.
-✅ Google Colab support for easy execution in the cloud.
 ✅ Visualizations using Matplotlib/OpenCV.
 
 # Installation
@@ -52,60 +49,65 @@ pcb-layout-model.pth
 python app.py
 ```
 * The API will start on http://127.0.0.1:5000/.
+* After running, you should see output like:
+```
+Running on http://127.0.0.1:5000/
+```
 
-2️⃣ Test with Postman or Curl
+2️⃣ Test the API with Postman
 To test the API, send a POST request to /predict with a JSON payload:
+
+➤ POST Request to /predict
+
+* Open Postman.
+
+* Select POST method.
+
+* Enter the URL: http://127.0.0.1:5000/predict
+
+* Go to the Body tab and select raw → JSON.
+
+* Input the following sample JSON data:
+
+```
+[
+    {"Component_Type": 1, "Width": 2.5, "Height": 3.1, "Power": 10, "Connections": 2},
+    {"Component_Type": 2, "Width": 1.8, "Height": 2.2, "Power": 5, "Connections": 3}
+]
+```
+* Click Send.
+  
+* You should receive a response like:
 
 ```
 {
-  "components": [[1, 0.5, 0.5, 2, 3], [2, 0.3, 0.3, 1, 2]],
-  "connections": [[0, 1]],
-  "obstacles": [[0.2, 0.2, 0.1, 0.1]]
+    "predictions": [
+        [
+            -0.12908372282981873,
+            -0.19454966485500336
+        ],
+        [
+            0.030656568706035614,
+            -0.12306378781795502
+        ]
+    ]
 }
 ```
 
-* Use curl:
-
+* In flask server url: http://127.0.0.1:5000/, you should receive a response like this:
 ```
-curl -X POST "http://127.0.0.1:5000/predict" -H "Content-Type: application/json" -d @input.json
+Flask is running!
 ```
 
-## Option 2: Run in Google Colab
+# Troubleshooting
 
-1️⃣ Open Google Colab.
-* Open [Google Colab](https://colab.google/)
-* Upload colab_notebook.ipynb from this repository.
+* 404 Not Found: Ensure you are hitting the correct endpoint (/predict).
 
-2️⃣ Run All Cells
-* The notebook will prompt you to upload a CSV file.
-* The model will process the data and visualize the PCB layout.
+* 405 Method Not Allowed: Use POST instead of GET.
 
-# Visualization
+* CUDA Error: Load the model using torch.load('pcb_layout_model.pth', map_location=torch.device('cpu')) if running on a CPU-only system.
 
-1️⃣ Matplotlib
-* If using Flask, the layout will be plotted using Matplotlib.
-
-2️⃣ OpenCV
-* For better visualization
-
-
-# Example_API_Requests
-
-1️⃣ Using Python Requests
-
-```
-import requests
-
-url = "http://127.0.0.1:5000/predict"
-data = {
-    "components": [[1, 0.5, 0.5, 2, 3], [2, 0.3, 0.3, 1, 2]],
-    "connections": [[0, 1]],
-    "obstacles": [[0.2, 0.2, 0.1, 0.1]]
-}
-
-response = requests.post(url, json=data)
-print(response.json())
-```
+* Ensure that pcb_layout_model.pth is in the same directory as app.py.
 
 # License
 

@@ -11,7 +11,7 @@ A deep-learning-based structured 2D layout generation model for PCB component pl
 * [Installation](#installation)
 * [Usage](#usage)
 * [Visualization](#visualization)
-* [Example API Requests](#example_api_requests)
+* [Example_API_Requests](#example_api_requests)
 * [License](#license)
 
 
@@ -89,7 +89,7 @@ curl -X POST "http://127.0.0.1:5000/predict" -H "Content-Type: application/json"
 * For better visualization
 
 
-# Example API Requests
+# Example_API_Requests
 
 1️⃣ Using Python Requests
 
